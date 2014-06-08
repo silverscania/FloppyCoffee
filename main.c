@@ -15,7 +15,8 @@
 #include <string.h>
 #include <dbus/dbus.h>       // for dbus_*   
 #include <dbus/dbus-glib.h>  // for dbus_g_*
-#include <bcm2835.h>
+#include <wiringPi.h>
+#include <stdbool.h>
 
 // File system is:
 // {DiskType - Time, Hour, Minute}
@@ -31,7 +32,21 @@
 typedef enum {TIME, VARIETY} DiskType;
 typedef enum {ESPRESSO, AMERICANO} Variety;
 
-//build gcc main.c -std=c99 -I/usr/include/dbus-1.0 -I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include/ -ldbus-1 -ldbus-glib-1 -Wall -Wextra -o bin/main
+typedef struct {
+    char type;
+    union {
+        struct {
+            char hour;
+            char minute;
+            };
+        struct {
+            char quantity;
+            char variety;
+        };
+    } detail;
+} DataEntry;
+
+//build gcc main.c -std=c99 -I/usr/include/dbus-1.0 -I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include/ -ldbus-1 -ldbus-glib-1 -lwiringPi -Wall -Wextra -o bin/main
 
 //Writes 3 bytes of data over and over
 void writeDisk(char data[])
@@ -200,6 +215,29 @@ DBusGConnection *connection;
      g_error_free (error);
 }
 
+bool isDiskIn()
+{
+    printf("isDiskIn? ");
+    int f = open(DISK, O_RDONLY);
+    if(f < 0) {
+        printf("No. Error: %s\n", strerror(errno));
+        return false;
+    }
+    else {
+        printf("Yes.\n");
+        close(f);
+        return true;
+    }
+}
+
+void monitorDisks()
+{
+    //If there is a type disk in when program starts, make it.
+    if(isDiskIn()) {
+    
+    }
+}
+
 int main(int argc, const char * argv[])
 {
     if(argc <= 1) {
@@ -207,19 +245,31 @@ int main(int argc, const char * argv[])
         return;
     }
 
-    if(strcmp(argv[1], "--monitor-disks")) {
-        printf("yeah pifef\n");
+    if(!strcmp(argv[1], "--monitor-disks")) {
+        printf("Starting disk monitor");
+        monitorDisks();
+        //testUDisks();
+    }
+    else if(!strcmp(argv[1], "--make-coffee")) {
+        wiringPiSetup () ;
+        const int pin1 = 15;
+        const int pin2 = 16;
+        pinMode (pin1, OUTPUT);
+        pinMode (pin2, OUTPUT);
+        while(1) {
+            digitalWrite(pin1, HIGH);
+            delay(500);
+            digitalWrite(pin2, HIGH);
+            delay(200);
+            digitalWrite(pin1, LOW);
+            delay(150);
+            digitalWrite(pin2, LOW);
+            delay(200);
+        }
     }
     createVarietyDisk(3, ESPRESSO);
     createTimeDisk(12, 34);
-    
-    //decodeDiskInfo();
-//testDBus();
-//testUDisks();
-for(int i = 0; i < 5; ++i) 
-{
-	sleep(1);
-}
+
     return 0;
 }
 
