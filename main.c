@@ -18,6 +18,7 @@
 #include <wiringPi.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <libconfig.h>
 
 // File system is:
 // {DiskType - Time, Hour, Minute}
@@ -28,15 +29,16 @@
 #define DATA_ENTRY_SIZE 3
 #define DATA_OFFSET 1000
 
-//Warmup time in seconds
-#define WARMUP_TIME (8 * 1)
-#define PIN_POWER 15
-#define PIN_WATER 16
-
 #define ON LOW
 #define OFF HIGH
 
-#define DISK "/dev/sda"
+config_t config;
+const char * drive;
+int warmupSecs;
+int espressoSecs;
+int americanoSecs;
+int pinPower;
+int pinWater;
 
 typedef enum {TIME = 0, VARIETY = 1} DiskType;
 typedef enum {ESPRESSO = 2, AMERICANO = 3} Variety;
@@ -55,12 +57,12 @@ typedef struct {
     } detail;
 } DataEntry;
 
-//build gcc main.c -std=c99 -I/usr/include/dbus-1.0 -I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include/ -ldbus-1 -ldbus-glib-1 -lwiringPi -Wall -o bin/main
+//build gcc main.c -std=c99 -I/usr/include/dbus-1.0 -I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include/ -ldbus-1 -ldbus-glib-1 -lwiringPi -lconfig -Wall -o bin/main
 
 //Writes 3 bytes of data over and over
 void writeDisk(DataEntry data)
 {
-    int f = open(DISK, O_WRONLY);
+    int f = open(drive, O_WRONLY);
     if(f < 0) {
         printf("Couldn't open disk1 for write. Check write protect switch. Error: %s\n", strerror(errno));
         return;
@@ -91,7 +93,7 @@ void writeDisk(DataEntry data)
 //Reads all data and takes average of each
 void readDisk(DataEntry* result)
 {
-    int f = open(DISK, O_RDONLY);
+    int f = open(drive, O_RDONLY);
     if(f < 0) {
         printf("Couldn't open disk1 for read\n");
         return;
@@ -150,14 +152,10 @@ device_removed (DBusGProxy *proxy,
 void testUDisks()
 {
 DBusGConnection *connection;
-  DBusMessage* message;
   GError *error;
   DBusGProxy *proxy;
   gchar *m1;
   gchar *m2;
-  char *object_path;
-  GPtrArray* ret;
-
   g_type_init ();
 
   error = NULL;
@@ -211,7 +209,7 @@ DBusGConnection *connection;
 bool isDiskIn()
 {
     printf("isDiskIn? ");
-    int f = open(DISK, O_RDONLY);
+    int f = open(drive, O_RDONLY);
     if(f < 0) {
         printf("No. Error: %s\n", strerror(errno));
         return false;
@@ -235,22 +233,22 @@ void makeDrink(DataEntry drink)
     
     //Warmup
     wiringPiSetup();
-    pinMode (PIN_WATER, OUTPUT);
-    pinMode (PIN_POWER, OUTPUT);
-    digitalWrite(PIN_WATER, OFF);
-    digitalWrite(PIN_POWER, ON);
-    sleep(WARMUP_TIME);
+    pinMode (pinWater, OUTPUT);
+    pinMode (pinPower, OUTPUT);
+    digitalWrite(pinWater, OFF);
+    digitalWrite(pinPower, ON);
+    sleep(warmupSecs);
     
     //Make drink
-    digitalWrite(PIN_WATER, ON);
-    int drinkTime = drink.detail.variety == ESPRESSO ? 6 : 15;
+    digitalWrite(pinWater, ON);
+    int drinkTime = drink.detail.variety == ESPRESSO ? espressoSecs : americanoSecs;
     sleep(drinkTime * drink.detail.quantity);
     
     //All off
-    digitalWrite(PIN_WATER, OFF);
-    digitalWrite(PIN_POWER, OFF);
-    pinMode(PIN_WATER, INPUT);
-    pinMode(PIN_POWER, INPUT);
+    digitalWrite(pinWater, OFF);
+    digitalWrite(pinPower, OFF);
+    pinMode(pinWater, INPUT);
+    pinMode(pinPower, INPUT);
 }
 
 void monitorDisks()
@@ -307,6 +305,34 @@ void createDisk(int argc, const char * argv[])
 OR --create-disk variety <quantity> espresso or americano\n\n");  
 }
 
+int readConfigFile() 
+{
+    config_init(&config);
+    /* Read the file. If there is an error, report it and exit. */
+    if(! config_read_file(&config, "config"))
+    {
+        printf("%s:%d - %s\n", config_error_file(&config),
+                config_error_line(&config), config_error_text(&config));
+        goto fail;
+    }
+    
+    if(config_lookup_string(&config, "drive", &drive) == CONFIG_FALSE) goto fail;
+    if(config_lookup_int(&config, "warmupSecs", &warmupSecs) == CONFIG_FALSE) goto fail;
+    if(config_lookup_int(&config, "espressoSecs", &espressoSecs) == CONFIG_FALSE) goto fail;
+    if(config_lookup_int(&config, "americanoSecs", &americanoSecs) == CONFIG_FALSE) goto fail;
+    if(config_lookup_int(&config, "waterPin", &pinWater) == CONFIG_FALSE) goto fail;
+    if(config_lookup_int(&config, "powerPin", &pinPower) == CONFIG_FALSE) goto fail;
+    
+    config_destroy(&config);
+    
+    printf("Config read successfully\n");
+    return 0;
+    
+    fail:
+    config_destroy(&config);
+    return 1;
+}
+
 int main(int argc, const char * argv[])
 {
     if(argc <= 1) {
@@ -314,6 +340,11 @@ int main(int argc, const char * argv[])
         return 1;
     }
 
+    if(readConfigFile()) {
+        printf("Parse config file error\n");
+        return 1;
+    }
+   
     if(!strcmp(argv[1], "--monitor-disks")) {
         printf("Starting disk monitor\n");
         monitorDisks();

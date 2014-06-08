@@ -1,9 +1,6 @@
-[FloppyDrive]
-/dev/sda
-[WarmupSeconds]
-5
-[EspressoSeconds]
-3
-[AmericanoSeconds]
-6
-
+drive = "/dev/sda"
+warmupSecs = 5
+espressoSecs = 5
+americanoSecs = 7
+powerPin = 15
+waterPin = 16
