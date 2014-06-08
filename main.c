@@ -230,6 +230,9 @@ void makeDrink(DataEntry drink)
         return; 
     }
     
+    printf("Making:\n");
+    printDiskInfo(drink);
+    
     //Warmup
     wiringPiSetup();
     pinMode (PIN_WATER, OUTPUT);
@@ -257,7 +260,7 @@ void monitorDisks()
         DataEntry result;
         readDisk(&result);
         if(result.type == VARIETY) {
-            printf("Started with a variety disk in:\n");
+            printf("Started with a variety disk in.\n");
             makeDrink(result);
         }
         else {

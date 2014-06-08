@@ -1,0 +1,9 @@
+[FloppyDrive]
+/dev/sda
+[WarmupSeconds]
+5
+[EspressoSeconds]
+3
+[AmericanoSeconds]
+6
+
