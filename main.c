@@ -29,8 +29,8 @@
 
 #define DISK "/dev/sda"
 
-typedef enum {TIME, VARIETY} DiskType;
-typedef enum {ESPRESSO, AMERICANO} Variety;
+typedef enum {TIME = 0, VARIETY = 1} DiskType;
+typedef enum {ESPRESSO = 2, AMERICANO = 3} Variety;
 
 typedef struct {
     char type;
@@ -73,7 +73,7 @@ void writeDisk(char data[])
 }
 
 //Reads all data and takes average of each
-void readDisk(char result[])
+void readDisk(DataEntry* result)
 {
     int f = open(DISK, O_RDONLY);
     if(f < 0) {
@@ -97,9 +97,8 @@ void readDisk(char result[])
         averageResult[i % DATA_ENTRY_SIZE] += data[i];
     }
     
-    for(int i = 0; i < DATA_ENTRY_SIZE; ++i) {
-        result[i] = averageResult[i] / NUM_REDUNDANT_DATA;
-    }
+    result->type = averageResult[0] / NUM_REDUNDANT_DATA;
+    
     
     close(f);
 }
@@ -126,6 +125,7 @@ void createVarietyDisk(char quantity, Variety variety)
 
 void decodeDiskInfo()
 {
+/*
     char result[DATA_ENTRY_SIZE];
     readDisk(result);
     
@@ -137,7 +137,7 @@ void decodeDiskInfo()
     else {
         printf("Variety\n");
         printf("%dx %s\n", result[1], result[2] == ESPRESSO ? "Espresso" : "Americano");
-    }
+    }*/
 }
 
 static GMainLoop *loop;
@@ -232,10 +232,47 @@ bool isDiskIn()
 
 void monitorDisks()
 {
-    //If there is a type disk in when program starts, make it.
+    //If there is a variety disk in when program starts, make the coffee.
     if(isDiskIn()) {
-    
+        DataEntry result;
+        readDisk(&result);
+        if(result.type == VARIETY) {
+            printf("Started with a variety disk in\n");
+        }
+        else {
+            printf("Started with a time disk, doing nothing\n");
+        }
     }
+}
+
+void createDisk(int argc, const char * argv[])
+{
+    if(argc != 5) goto arg_error;
+   
+    DataEntry entry;
+    if(!strcmp(argv[2], "time")) entry.type = TIME;
+    else if(!strcmp(argv[2], "variety")) entry.type = VARIETY;
+    else goto arg_error;
+       
+    if(entry.type == TIME) {
+        entry.detail.hour = atoi(argv[3]);
+        entry.detail.minute = atoi(argv[4]);
+        
+        if(entry.detail.hour < 0 || entry.detail.hour > 23) goto arg_error;
+        if(entry.detail.minute < 0 || entry.detail.minute > 59) goto arg_error;
+    }
+    else {
+        entry.detail.quantity = atoi(argv[3]);
+        
+        if(!strcmp(argv[4], "espresso")) entry.detail.variety = ESPRESSO;
+        else if(!strcmp(argv[4], "americano")) entry.detail.variety = AMERICANO;
+        else goto arg_error;
+    }
+        
+    return;
+    arg_error:
+    printf("Argument error. Use --create-disk time <hour> <minute>\n \
+    OR --create-disk variety <quantity> espresso or americano\n\n");  
 }
 
 int main(int argc, const char * argv[])
@@ -267,6 +304,10 @@ int main(int argc, const char * argv[])
             delay(200);
         }
     }
+    else if(!strcmp(argv[1], "--create-disk")) {
+        createDisk(argc, argv);
+    }
+    
     createVarietyDisk(3, ESPRESSO);
     createTimeDisk(12, 34);
 
