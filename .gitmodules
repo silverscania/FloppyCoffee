@@ -1,3 +1,0 @@
-[submodule "libs/libconfig"]
-	path = libs/libconfig
-	url = https://github.com/hyperrealm/libconfig
