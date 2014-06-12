@@ -27,7 +27,7 @@
 
 #define NUM_REDUNDANT_DATA 100
 #define DATA_ENTRY_SIZE 3
-#define DATA_OFFSET 1000
+#define DATA_OFFSET 20000
 
 #define ON LOW
 #define OFF HIGH
@@ -317,18 +317,18 @@ int readConfigFile()
     }
     
     if(config_lookup_string(&config, "drive", &drive) == CONFIG_FALSE) goto fail;
+    printf("%s\n", drive);
     if(config_lookup_int(&config, "warmupSecs", &warmupSecs) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "espressoSecs", &espressoSecs) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "americanoSecs", &americanoSecs) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "waterPin", &pinWater) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "powerPin", &pinPower) == CONFIG_FALSE) goto fail;
     
-    config_destroy(&config);
-    
     printf("Config read successfully\n");
     return 0;
     
     fail:
+    printf("Parse config file error\n");
     config_destroy(&config);
     return 1;
 }
@@ -336,19 +336,18 @@ int readConfigFile()
 int main(int argc, const char * argv[])
 {
     if(argc <= 1) {
-        printf("Not enough arguments. Use --monitor-disks or --make-coffee\n");
-        return 1;
+        printf("Not enough arguments. Use --monitor-disks or --make-coffee or --create-disk\n");
+        goto fail_main;
     }
 
     if(readConfigFile()) {
-        printf("Parse config file error\n");
-        return 1;
+        goto fail_main;
     }
    
     if(!strcmp(argv[1], "--monitor-disks")) {
         printf("Starting disk monitor\n");
         monitorDisks();
-        //testUDisks();
+        testUDisks();
     }
     else if(!strcmp(argv[1], "--make-coffee")) {
         wiringPiSetup () ;
@@ -371,10 +370,15 @@ int main(int argc, const char * argv[])
     }
     else {
         printf("Command not recognised.\n");
-        return 1;
+        goto fail_main;
     }
     
+    config_destroy(&config);
     return 0;
+    
+    fail_main:
+    config_destroy(&config);
+    return 1;
 }
 
 
