@@ -42,20 +42,23 @@ int pinWater;
 
 typedef enum {TIME = 0, VARIETY = 1} DiskType;
 typedef enum {ESPRESSO = 2, AMERICANO = 3} Variety;
+typedef signed char schar;
 
 typedef struct {
-    char type;
+    schar type;
     union {
         struct {
-            char hour;
-            char minute;
+            schar hour;
+            schar minute;
             };
         struct {
-            char quantity;
-            char variety;
+            schar quantity;
+            schar variety;
         };
     } detail;
 } DataEntry;
+
+DataEntry savedDiskType, savedDiskVariety;
 
 //build gcc main.c -std=c99 -I/usr/include/dbus-1.0 -I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include/ -ldbus-1 -ldbus-glib-1 -lwiringPi -lconfig -Wall -o bin/main
 
@@ -74,7 +77,7 @@ void writeDisk(DataEntry data)
     }
     
     //Convert struct to 3 byte array
-    char dataArray[DATA_ENTRY_SIZE];
+    schar dataArray[DATA_ENTRY_SIZE];
     dataArray[0] = data.type;
     dataArray[1] = data.detail.hour;
     dataArray[2] = data.detail.minute;
@@ -104,7 +107,7 @@ void readDisk(DataEntry* result)
         return;
     }
     
-    char data[DATA_ENTRY_SIZE*NUM_REDUNDANT_DATA];
+    schar data[DATA_ENTRY_SIZE*NUM_REDUNDANT_DATA];
     if(read(f, data, DATA_ENTRY_SIZE*NUM_REDUNDANT_DATA) < 0){
         printf("Read error: %s\n", strerror(errno));
         return;
@@ -137,6 +140,54 @@ void printDiskInfo(DataEntry data)
 
 static GMainLoop *loop;
 
+void saveDiskType(DataEntry disk)
+{
+    //Last disk file contains {Hour, Minute, Quantity, Variety}
+    FILE* f = fopen("lastDisk", "r+");
+    
+    if(disk.type == TIME) {
+        fseek(f, 0, SEEK_SET);
+    }
+    else {
+        fseek(f, 2, SEEK_SET);
+    }
+    
+    schar data[] = {disk.detail.hour, disk.detail.minute};
+    fwrite(data, sizeof(schar), sizeof(data), f);
+    fclose(f);
+    
+    printf("Saved disk\n");
+    printDiskInfo(disk);
+}
+
+void loadSavedDiskType()
+{
+    FILE* f = fopen("lastDisk", "r");
+    
+    if(disk.type == TIME) {
+        fseek(f, 0, SEEK_SET);
+    }
+    else {
+        fseek(f, 2, SEEK_SET);
+    }
+    
+    schar data[4];
+    fread(data, sizeof(schar), sizeof(data), f);
+    fclose(f);
+    
+    savedDiskTime.type = TIME;
+    savedDiskTime.detail.hour = data[0];
+    savedDiskTime.detail.minute = data[1];
+    
+    savedDiskVariety.type = VARIETY;
+    savedDiskVariety.detail.quantity = data[2];
+    savedDiskVeriety.detail.variety = data[3];
+    
+    printf("Loaded saved disk");
+    printDiskInfo(savedDiskTime);
+    printDiskInfo(savedDiskVariety);
+}
+
 static void
 device_removed (DBusGProxy *proxy,
          char *ObjectPath[],
@@ -147,6 +198,11 @@ device_removed (DBusGProxy *proxy,
 {
     printf("device changed: %s\n", (char*)word_eol);
     printf("Removed Device\nObjectPath: %s\nhook_id: %d\ncontext_id: %d\nuser_data: %d\n\n", (char*)ObjectPath, hook_id, context_id, (int)user_data); 
+}
+
+void setupCronJob() 
+{
+    // Use saved disk data to create cron job
 }
 
 void testUDisks()
@@ -187,12 +243,12 @@ DBusGConnection *connection;
      else
        printf("Probably got a connection to the correct interface...\n");
 //It works for me without marshaler register, add and connect to the signals directly
-     m1=g_cclosure_marshal_VOID__STRING;
-     m2=g_cclosure_marshal_VOID__STRING;
+//     m1=g_cclosure_marshal_VOID__STRING;
+ //    m2=g_cclosure_marshal_VOID__STRING;
 
-     dbus_g_object_register_marshaller(m1,G_TYPE_NONE,G_TYPE_STRING,G_TYPE_INVALID);
+ //    dbus_g_object_register_marshaller(m1,G_TYPE_NONE,G_TYPE_STRING,G_TYPE_INVALID);
 
-     dbus_g_object_register_marshaller(m2,G_TYPE_NONE,G_TYPE_STRING,G_TYPE_INVALID);
+//     dbus_g_object_register_marshaller(m2,G_TYPE_NONE,G_TYPE_STRING,G_TYPE_INVALID);
 
     
 
@@ -264,13 +320,17 @@ void monitorDisks()
         else {
             printf("Started with a time disk, doing nothing\n");
         }
+        saveDiskType(result);
     }
 }
 
 void createDisk(int argc, const char * argv[])
 {
-    if(argc != 5) goto arg_error;
-   
+    if(argc != 5) {
+        printf("invalid number of arguments\n");
+        goto arg_error;
+    }
+    
     DataEntry entry;
     if(!strcmp(argv[2], "time")) entry.type = TIME;
     else if(!strcmp(argv[2], "variety")) entry.type = VARIETY;
@@ -280,8 +340,11 @@ void createDisk(int argc, const char * argv[])
         entry.detail.hour = atoi(argv[3]);
         entry.detail.minute = atoi(argv[4]);
         
-        if(entry.detail.hour < 0 || entry.detail.hour > 23) goto arg_error;
-        if(entry.detail.minute < 0 || entry.detail.minute > 59) goto arg_error;
+        if(entry.detail.hour < -1 || entry.detail.hour > 23) {
+            printf("hours invalid range\n");
+            goto arg_error;
+        }
+        if(entry.detail.minute < -1 || entry.detail.minute > 59) goto arg_error;
     }
     else {
         entry.detail.quantity = atoi(argv[3]);
@@ -301,7 +364,7 @@ void createDisk(int argc, const char * argv[])
     return;
     
     arg_error:
-    printf("Argument error. Use --create-disk time <24 hour> <minute>\n \
+    printf("Argument error. Use --create-disk time <24 hour (-1 for now)s> <minute>\n \
 OR --create-disk variety <quantity> espresso or americano\n\n");  
 }
 
@@ -335,6 +398,9 @@ int readConfigFile()
 
 int main(int argc, const char * argv[])
 {
+    loadSavedDisk();
+    setupCronJob();
+    
     if(argc <= 1) {
         printf("Not enough arguments. Use --monitor-disks or --make-coffee or --create-disk\n");
         goto fail_main;
