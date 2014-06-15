@@ -41,6 +41,7 @@ int americanoSecs;
 int pinPower;
 int pinWater;
 int beepPin;
+int testCronMinute;
 
 GMainLoop* loop;
 bool diskIn;
@@ -125,7 +126,7 @@ void readDisk(DataEntry* result)
     
     result->type = averageResult[0] / NUM_REDUNDANT_DATA;
     result->detail.hour = averageResult[1] / NUM_REDUNDANT_DATA;
-    result->detail.minute = averageResult[1] / NUM_REDUNDANT_DATA;
+    result->detail.minute = averageResult[2] / NUM_REDUNDANT_DATA;
     
     close(f);
 }
@@ -159,8 +160,9 @@ void saveDisk(DataEntry disk)
     fwrite(data, sizeof(schar), sizeof(data), f);
     fclose(f);
     
-    printf("Saved disk\n");
+    printf("\nSaved disk in file:\n");
     printDiskInfo(disk);
+    printf("\n");
 }
 
 void loadSavedDisk()
@@ -179,9 +181,10 @@ void loadSavedDisk()
     savedDiskVariety.detail.quantity = data[2];
     savedDiskVariety.detail.variety = data[3];
     
-    printf("Loaded saved disk");
+    printf("\nLoaded saved disk:\n");
     printDiskInfo(savedDiskTime);
     printDiskInfo(savedDiskVariety);
+    printf("\n");
 }
 
 bool isDiskIn()
@@ -206,11 +209,25 @@ void beep()
     //softPwmWrite(beepPin, 0);
     
     pinMode(beepPin, OUTPUT);
-    for(int i = 0; i < 1000; ++i) {
+    for(int i = 0; i < 100; ++i) {
         digitalWrite(beepPin, HIGH);
-        delay(1);
+        delayMicroseconds(1000);
         digitalWrite(beepPin, LOW);
-        delay(1);
+        delayMicroseconds(1000);
+    }
+    
+    for(int i = 0; i < 110; ++i) {
+        digitalWrite(beepPin, HIGH);
+        delayMicroseconds(500);
+        digitalWrite(beepPin, LOW);
+        delayMicroseconds(500);
+    }
+    
+    for(int i = 0; i < 150; ++i) {
+        digitalWrite(beepPin, HIGH);
+        delayMicroseconds(400);
+        digitalWrite(beepPin, LOW);
+        delayMicroseconds(400);
     }
     //pinMode (pinWater, OUTPUT);
     //pinMode (pinPower, OUTPUT);
@@ -220,6 +237,16 @@ void beep()
 void setupCronJob() 
 {
     // Use saved disk data to create cron job
+    //# m h  dom mon dow command
+    //18 17 * * * touch ~/blah
+    
+    char data[512];
+    sprintf(data, "%d %d * * * cd ~/workspace/FloppyCoffee && sudo bin/main --make-coffee >> logs\n", savedDiskTime.detail.hour, savedDiskTime.detail.minute);
+    FILE* f = fopen("cronjob", "w");
+    fputs(data, f);
+    fclose(f);
+    
+    system("crontab cronjob");
 }
 
 void makeDrink(DataEntry drink)
@@ -265,16 +292,16 @@ void device_changed (DBusGProxy *proxy,
         
         DataEntry result;
         readDisk(&result);
-        saveDisk(result);
-        
-        beep();
         
         //check for now disk
         if(result.type == TIME && (result.detail.hour < 0 || result.detail.minute < 0)) {
+            beep();
             makeDrink(savedDiskVariety);
         }
         else {
+            saveDisk(result);
             setupCronJob();
+            beep();
         }
     }
     
@@ -345,7 +372,11 @@ void monitorDisks()
         //else {
         //    printf("Started with a time disk, doing nothing\n");
         //}
-        saveDisk(result);
+        
+        //dont save 'now' disks
+        if(result.type != TIME || (result.detail.hour >= 0 && result.detail.minute >= 0)) {
+            saveDisk(result);
+        }
         diskIn = true;
         beep();
     }
@@ -419,6 +450,7 @@ int readConfigFile()
     if(config_lookup_int(&config, "waterPin", &pinWater) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "powerPin", &pinPower) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "beepPin", &beepPin) == CONFIG_FALSE) goto fail;
+    if(config_lookup_int(&config, "testCronMinute", &testCronMinute) == CONFIG_FALSE) goto fail;
     
     printf("Config read successfully\n");
     return 0;
@@ -431,9 +463,6 @@ int readConfigFile()
 
 int main(int argc, const char * argv[])
 {    
-    loadSavedDisk();
-    setupCronJob();
-    
     if(argc <= 1) {
         printf("Not enough arguments. Use --monitor-disks or --make-coffee or --create-disk\n");
         goto fail_main;
@@ -443,10 +472,14 @@ int main(int argc, const char * argv[])
         goto fail_main;
     }
  
+    loadSavedDisk();
+    setupCronJob();
+    
     //setup beep pin
     wiringPiSetup();
+    setPadDrive(0, 7); //max current mode
     //softPwmCreate(beepPin, 0, 10);
-    beep();
+    //beep();
       
     if(!strcmp(argv[1], "--monitor-disks")) {
         printf("Starting disk monitor\n");

@@ -1,0 +1,1 @@
+-1 1 * * * cd ~/workspace/FloppyCoffee && sudo bin/main --make-coffee >> logs
