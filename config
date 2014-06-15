@@ -4,3 +4,5 @@ espressoSecs = 5
 americanoSecs = 7
 powerPin = 15
 waterPin = 16
+beepPin = 1
+

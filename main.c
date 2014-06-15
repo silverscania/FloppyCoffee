@@ -19,6 +19,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <libconfig.h>
+#include <softPwm.h>
 
 // File system is:
 // {DiskType - Time, Hour, Minute}
@@ -33,12 +34,16 @@
 #define OFF HIGH
 
 config_t config;
-const char * drive;
+const char* drive;
 int warmupSecs;
 int espressoSecs;
 int americanoSecs;
 int pinPower;
 int pinWater;
+int beepPin;
+
+GMainLoop* loop;
+bool diskIn;
 
 typedef enum {TIME = 0, VARIETY = 1} DiskType;
 typedef enum {ESPRESSO = 2, AMERICANO = 3} Variety;
@@ -58,9 +63,9 @@ typedef struct {
     } detail;
 } DataEntry;
 
-DataEntry savedDiskType, savedDiskVariety;
+DataEntry savedDiskTime, savedDiskVariety;
 
-//build gcc main.c -std=c99 -I/usr/include/dbus-1.0 -I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include/ -ldbus-1 -ldbus-glib-1 -lwiringPi -lconfig -Wall -o bin/main
+//build gcc main.c -std=c99 -I/usr/include/dbus-1.0 -I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include/ -ldbus-1 -ldbus-glib-1 -lwiringPi -lconfig -lpthread -Wall -o bin/main
 
 //Writes 3 bytes of data over and over
 void writeDisk(DataEntry data)
@@ -138,9 +143,7 @@ void printDiskInfo(DataEntry data)
     }
 }
 
-static GMainLoop *loop;
-
-void saveDiskType(DataEntry disk)
+void saveDisk(DataEntry disk)
 {
     //Last disk file contains {Hour, Minute, Quantity, Variety}
     FILE* f = fopen("lastDisk", "r+");
@@ -160,16 +163,9 @@ void saveDiskType(DataEntry disk)
     printDiskInfo(disk);
 }
 
-void loadSavedDiskType()
+void loadSavedDisk()
 {
     FILE* f = fopen("lastDisk", "r");
-    
-    if(disk.type == TIME) {
-        fseek(f, 0, SEEK_SET);
-    }
-    else {
-        fseek(f, 2, SEEK_SET);
-    }
     
     schar data[4];
     fread(data, sizeof(schar), sizeof(data), f);
@@ -181,23 +177,44 @@ void loadSavedDiskType()
     
     savedDiskVariety.type = VARIETY;
     savedDiskVariety.detail.quantity = data[2];
-    savedDiskVeriety.detail.variety = data[3];
+    savedDiskVariety.detail.variety = data[3];
     
     printf("Loaded saved disk");
     printDiskInfo(savedDiskTime);
     printDiskInfo(savedDiskVariety);
 }
 
-static void
-device_removed (DBusGProxy *proxy,
-         char *ObjectPath[],
-         char *word_eol[],
-         guint hook_id,
-         guint context_id,
-         gpointer user_data)
+bool isDiskIn()
 {
-    printf("device changed: %s\n", (char*)word_eol);
-    printf("Removed Device\nObjectPath: %s\nhook_id: %d\ncontext_id: %d\nuser_data: %d\n\n", (char*)ObjectPath, hook_id, context_id, (int)user_data); 
+    printf("isDiskIn? ");
+    int f = open(drive, O_RDONLY);
+    if(f < 0) {
+        printf("No. Error: %s\n", strerror(errno));
+        return false;
+    }
+    else {
+        printf("Yes.\n");
+        close(f);
+        return true;
+    }
+}
+
+void beep()
+{
+    //softPwmWrite(beepPin, 5);
+    //delay(200);
+    //softPwmWrite(beepPin, 0);
+    
+    pinMode(beepPin, OUTPUT);
+    for(int i = 0; i < 1000; ++i) {
+        digitalWrite(beepPin, HIGH);
+        delay(1);
+        digitalWrite(beepPin, LOW);
+        delay(1);
+    }
+    //pinMode (pinWater, OUTPUT);
+    //pinMode (pinPower, OUTPUT);
+    //digitalWrite(pinWater, OFF);
 }
 
 void setupCronJob() 
@@ -205,13 +222,73 @@ void setupCronJob()
     // Use saved disk data to create cron job
 }
 
-void testUDisks()
+void makeDrink(DataEntry drink)
+{
+    if(drink.type != VARIETY) {
+        printf("Error, bad params in function call makeDrink\n");
+        return; 
+    }
+    
+    printf("Making:\n");
+    printDiskInfo(drink);
+    
+    //Warmup
+    pinMode (pinWater, OUTPUT);
+    pinMode (pinPower, OUTPUT);
+    digitalWrite(pinWater, OFF);
+    digitalWrite(pinPower, ON);
+    sleep(warmupSecs);
+    
+    //Make drink
+    digitalWrite(pinWater, ON);
+    int drinkTime = drink.detail.variety == ESPRESSO ? espressoSecs : americanoSecs;
+    sleep(drinkTime * drink.detail.quantity);
+    
+    //All off
+    digitalWrite(pinWater, OFF);
+    digitalWrite(pinPower, OFF);
+    pinMode(pinWater, INPUT);
+    pinMode(pinPower, INPUT);
+}
+
+void device_changed (DBusGProxy *proxy,
+         char *ObjectPath[],
+         char *word_eol[],
+         guint hook_id,
+         guint context_id,
+         gpointer user_data)
+{
+    bool diskInTest = isDiskIn();
+    if(diskInTest && !diskIn) {
+        diskIn = true;
+        printf("Added\n");
+        
+        DataEntry result;
+        readDisk(&result);
+        saveDisk(result);
+        
+        beep();
+        
+        //check for now disk
+        if(result.type == TIME && (result.detail.hour < 0 || result.detail.minute < 0)) {
+            makeDrink(savedDiskVariety);
+        }
+        else {
+            setupCronJob();
+        }
+    }
+    
+    if(!diskInTest && diskIn){
+        diskIn = false;
+        printf("removed\n");
+    }
+}
+
+void startUDisks()
 {
 DBusGConnection *connection;
   GError *error;
   DBusGProxy *proxy;
-  gchar *m1;
-  gchar *m2;
   g_type_init ();
 
   error = NULL;
@@ -240,20 +317,12 @@ DBusGConnection *connection;
         g_error_free (error);
         exit(1);
      }
-     else
-       printf("Probably got a connection to the correct interface...\n");
-//It works for me without marshaler register, add and connect to the signals directly
-//     m1=g_cclosure_marshal_VOID__STRING;
- //    m2=g_cclosure_marshal_VOID__STRING;
-
- //    dbus_g_object_register_marshaller(m1,G_TYPE_NONE,G_TYPE_STRING,G_TYPE_INVALID);
-
-//     dbus_g_object_register_marshaller(m2,G_TYPE_NONE,G_TYPE_STRING,G_TYPE_INVALID);
-
+     else {
+        printf("Probably got a connection to the correct interface...\n");
+     }
     
-
      dbus_g_proxy_add_signal(proxy,"DeviceChanged",DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
-     dbus_g_proxy_connect_signal(proxy,"DeviceChanged",(GCallback)device_removed,NULL,NULL);
+     dbus_g_proxy_connect_signal(proxy,"DeviceChanged",(GCallback)device_changed,NULL,NULL);
 
      loop=g_main_loop_new(NULL,FALSE);
 
@@ -262,66 +331,29 @@ DBusGConnection *connection;
      g_error_free (error);
 }
 
-bool isDiskIn()
-{
-    printf("isDiskIn? ");
-    int f = open(drive, O_RDONLY);
-    if(f < 0) {
-        printf("No. Error: %s\n", strerror(errno));
-        return false;
-    }
-    else {
-        printf("Yes.\n");
-        close(f);
-        return true;
-    }
-}
-
-void makeDrink(DataEntry drink)
-{
-    if(drink.type != VARIETY) {
-        printf("Error, bad params in function call makeDrink\n");
-        return; 
-    }
-    
-    printf("Making:\n");
-    printDiskInfo(drink);
-    
-    //Warmup
-    wiringPiSetup();
-    pinMode (pinWater, OUTPUT);
-    pinMode (pinPower, OUTPUT);
-    digitalWrite(pinWater, OFF);
-    digitalWrite(pinPower, ON);
-    sleep(warmupSecs);
-    
-    //Make drink
-    digitalWrite(pinWater, ON);
-    int drinkTime = drink.detail.variety == ESPRESSO ? espressoSecs : americanoSecs;
-    sleep(drinkTime * drink.detail.quantity);
-    
-    //All off
-    digitalWrite(pinWater, OFF);
-    digitalWrite(pinPower, OFF);
-    pinMode(pinWater, INPUT);
-    pinMode(pinPower, INPUT);
-}
-
 void monitorDisks()
 {
-    //If there is a variety disk in when program starts, make the coffee.
+    //If there is a variety disk in when program starts, save the disk. //make the coffee.
     if(isDiskIn()) {
         DataEntry result;
         readDisk(&result);
-        if(result.type == VARIETY) {
-            printf("Started with a variety disk in.\n");
-            makeDrink(result);
-        }
-        else {
-            printf("Started with a time disk, doing nothing\n");
-        }
-        saveDiskType(result);
+        //Kind of confusing. wait for 'now' disk to do immediate stuff
+        //if(result.type == VARIETY) {
+        //    printf("Started with a variety disk in.\n");
+        //    makeDrink(result);
+        // }
+        //else {
+        //    printf("Started with a time disk, doing nothing\n");
+        //}
+        saveDisk(result);
+        diskIn = true;
+        beep();
     }
+    else {
+        diskIn = false;
+    }
+    
+    startUDisks();
 }
 
 void createDisk(int argc, const char * argv[])
@@ -386,6 +418,7 @@ int readConfigFile()
     if(config_lookup_int(&config, "americanoSecs", &americanoSecs) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "waterPin", &pinWater) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "powerPin", &pinPower) == CONFIG_FALSE) goto fail;
+    if(config_lookup_int(&config, "beepPin", &beepPin) == CONFIG_FALSE) goto fail;
     
     printf("Config read successfully\n");
     return 0;
@@ -397,7 +430,7 @@ int readConfigFile()
 }
 
 int main(int argc, const char * argv[])
-{
+{    
     loadSavedDisk();
     setupCronJob();
     
@@ -409,27 +442,18 @@ int main(int argc, const char * argv[])
     if(readConfigFile()) {
         goto fail_main;
     }
-   
+ 
+    //setup beep pin
+    wiringPiSetup();
+    //softPwmCreate(beepPin, 0, 10);
+    beep();
+      
     if(!strcmp(argv[1], "--monitor-disks")) {
         printf("Starting disk monitor\n");
         monitorDisks();
-        testUDisks();
     }
     else if(!strcmp(argv[1], "--make-coffee")) {
-        wiringPiSetup () ;
-        const int pin1 = 15;
-        const int pin2 = 16;
-        
-        while(1) {
-            digitalWrite(pin1, HIGH);
-            delay(500);
-            digitalWrite(pin2, HIGH);
-            delay(200);
-            digitalWrite(pin1, LOW);
-            delay(150);
-            digitalWrite(pin2, LOW);
-            delay(200);
-        }
+        makeDrink(savedDiskVariety);
     }
     else if(!strcmp(argv[1], "--create-disk")) {
         createDisk(argc, argv);
