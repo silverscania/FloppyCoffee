@@ -1,1 +1,1 @@
--1 1 * * * cd ~/workspace/FloppyCoffee && sudo bin/main --make-coffee >> logs
+7 10 * * * cd /home/pi/workspace/FloppyCoffee && sudo bin/main --make-coffee >> logs

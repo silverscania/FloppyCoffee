@@ -40,8 +40,7 @@ int espressoSecs;
 int americanoSecs;
 int pinPower;
 int pinWater;
-int beepPin;
-int testCronMinute;
+int beepPin; 
 
 GMainLoop* loop;
 bool diskIn;
@@ -234,14 +233,30 @@ void beep()
     //digitalWrite(pinWater, OFF);
 }
 
+void beepStartup()
+{
+    pinMode(beepPin, OUTPUT);
+    for(int j = 0; j < 3; ++j) {
+        for(int i = 0; i < 100; ++i) {
+            digitalWrite(beepPin, HIGH);
+            delayMicroseconds(500);
+            digitalWrite(beepPin, LOW);
+            delayMicroseconds(500);
+        }
+        delay(50);
+    }
+}
+
 void setupCronJob() 
 {
     // Use saved disk data to create cron job
     //# m h  dom mon dow command
     //18 17 * * * touch ~/blah
-    
-    char data[512];
-    sprintf(data, "%d %d * * * cd ~/workspace/FloppyCoffee && sudo bin/main --make-coffee >> logs\n", savedDiskTime.detail.hour, savedDiskTime.detail.minute);
+    char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+
+    char data[2048];
+    sprintf(data, "%d %d * * * cd %s && sudo bin/main --make-coffee >> logs\n", savedDiskTime.detail.hour, savedDiskTime.detail.minute, cwd);
     FILE* f = fopen("cronjob", "w");
     fputs(data, f);
     fclose(f);
@@ -360,6 +375,7 @@ DBusGConnection *connection;
 
 void monitorDisks()
 {
+    beepStartup();
     //If there is a variety disk in when program starts, save the disk. //make the coffee.
     if(isDiskIn()) {
         DataEntry result;
@@ -450,7 +466,6 @@ int readConfigFile()
     if(config_lookup_int(&config, "waterPin", &pinWater) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "powerPin", &pinPower) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "beepPin", &beepPin) == CONFIG_FALSE) goto fail;
-    if(config_lookup_int(&config, "testCronMinute", &testCronMinute) == CONFIG_FALSE) goto fail;
     
     printf("Config read successfully\n");
     return 0;

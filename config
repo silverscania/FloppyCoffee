@@ -1,8 +1,8 @@
 drive = "/dev/sda"
-warmupSecs = 5
-espressoSecs = 5
-americanoSecs = 7
-powerPin = 15
-waterPin = 16
+warmupSecs = 100
+espressoSecs = 9
+americanoSecs = 29
+powerPin = 5
+waterPin = 4
 beepPin = 1
-testCronMinute = 10
+
