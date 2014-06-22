@@ -1,0 +1,96 @@
+[a:--monitor-disks d:6/22 t:16:52:26 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/22 t:16:52:26 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/22 t:16:52:26 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/22 t:16:52:26 f:printDiskInfo]   -----Disk-----
+Type: 
+[a:--monitor-disks d:6/22 t:16:52:26 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/22 t:16:52:26 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/22 t:16:52:26 f:printDiskInfo]   -----Disk-----
+Type: 
+[a:--monitor-disks d:6/22 t:16:52:26 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/22 t:16:52:26 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/22 t:16:52:26 f:setupCronJob]   func
+[a:--monitor-disks d:6/22 t:16:52:26 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/22 t:16:52:27 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/22 t:16:52:27 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/22 t:16:52:27 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/22 t:16:52:27 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/22 t:16:59:55 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/22 t:16:59:55 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/22 t:16:59:55 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/22 t:16:59:55 f:printDiskInfo]   -----Disk-----
+Type: 
+[a:--monitor-disks d:6/22 t:16:59:55 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/22 t:16:59:55 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/22 t:16:59:55 f:printDiskInfo]   -----Disk-----
+Type: 
+[a:--monitor-disks d:6/22 t:16:59:55 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/22 t:16:59:55 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/22 t:16:59:55 f:setupCronJob]   func
+[a:--monitor-disks d:6/22 t:16:59:55 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/22 t:16:59:56 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/22 t:16:59:56 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/22 t:16:59:57 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/22 t:16:59:57 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/22 t:17:3:24 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/22 t:17:3:24 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/22 t:17:3:24 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/22 t:17:3:24 f:printDiskInfo]   -----Disk-----
+Type: 
+[a:--monitor-disks d:6/22 t:17:3:24 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/22 t:17:3:24 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/22 t:17:3:24 f:printDiskInfo]   -----Disk-----
+Type: 
+[a:--monitor-disks d:6/22 t:17:3:24 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/22 t:17:3:24 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/22 t:17:3:24 f:setupCronJob]   func
+[a:--monitor-disks d:6/22 t:17:3:25 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/22 t:17:3:25 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/22 t:17:3:26 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/22 t:17:3:26 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/22 t:17:3:26 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/22 t:17:26:47 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/22 t:17:26:47 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/22 t:17:26:47 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/22 t:17:26:47 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/22 t:17:26:47 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/22 t:17:26:47 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/22 t:17:26:47 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/22 t:17:26:47 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/22 t:17:26:47 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/22 t:17:26:47 f:setupCronJob]   func
+[a:--monitor-disks d:6/22 t:17:26:47 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/22 t:17:26:47 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/22 t:17:26:48 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/22 t:17:26:48 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/22 t:17:26:48 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/22 t:17:17:31 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/22 t:17:17:31 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/22 t:17:17:31 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/22 t:17:17:31 f:setupCronJob]   func
+[a:--monitor-disks d:6/22 t:17:17:31 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/22 t:17:17:32 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/22 t:17:17:32 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/22 t:17:17:32 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/22 t:17:17:32 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/22 t:17:17:31 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/22 t:17:17:31 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/22 t:17:17:31 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/22 t:17:17:31 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/22 t:17:17:31 f:setupCronJob]   func
+[a:--monitor-disks d:6/22 t:17:17:32 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/22 t:17:17:33 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/22 t:17:17:34 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/22 t:17:17:34 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/22 t:17:17:34 f:startUDisks]   Probably got a connection to the correct interface...

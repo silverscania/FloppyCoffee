@@ -1,1 +1,1 @@
-7 10 * * * cd /home/pi/workspace/FloppyCoffee && sudo bin/main --make-coffee >> logs
+* * * * * cd /home/pi/workspace/FloppyCoffee && stdbuf -oL bin/main --make-coffee | tee -a cronLog

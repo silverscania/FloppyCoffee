@@ -20,21 +20,26 @@
 #include <stdlib.h>
 #include <libconfig.h>
 #include <softPwm.h>
+#include <time.h>
 
 // File system is:
 // {DiskType - Time, Hour, Minute}
 // or
 // {DiskType - Variety, Quantity, Variety}
 
-#define NUM_REDUNDANT_DATA 100
+#define NUM_REDUNDANT_DATA 50
 #define DATA_ENTRY_SIZE 3
 #define DATA_OFFSET 20000
 
 #define ON LOW
 #define OFF HIGH
 
+#define Log(s, args...) logPrnt(__func__);  printf(s, ##args); printf("\n");
+
 config_t config;
 const char* drive;
+const char* arg1;
+
 int warmupSecs;
 int espressoSecs;
 int americanoSecs;
@@ -67,17 +72,26 @@ DataEntry savedDiskTime, savedDiskVariety;
 
 //build gcc main.c -std=c99 -I/usr/include/dbus-1.0 -I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include/ -ldbus-1 -ldbus-glib-1 -lwiringPi -lconfig -lpthread -Wall -o bin/main
 
+void logPrnt(const char* func) 
+{
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    printf("[a:%s d:%d/%d t:%d:%d:%d f:%s]   ", arg1, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, func);
+}
+
 //Writes 3 bytes of data over and over
 void writeDisk(DataEntry data)
 {
     int f = open(drive, O_WRONLY);
     if(f < 0) {
-        printf("Couldn't open disk1 for write. Check write protect switch. Error: %s\n", strerror(errno));
+
+        Log("Couldn't open disk1 for write. Check write protect switch. Error: %s", strerror(errno));
         return;
     }
     
     if(lseek(f, DATA_OFFSET, SEEK_SET) < 0) {
-        printf("Seek error\n");
+        Log("Seek error");
         return;
     }
     
@@ -89,12 +103,12 @@ void writeDisk(DataEntry data)
     
     for(int i = 0; i < NUM_REDUNDANT_DATA; ++i) {
         if(write(f, dataArray, DATA_ENTRY_SIZE) < 0){
-            printf("Write error: %s\n", strerror(errno));
+            Log("Write error: %s", strerror(errno));
             return;
         }
     }
     
-    printf("Disk write successful!\n");
+    Log("Disk write successful!");
     close(f);
 }
 
@@ -103,18 +117,18 @@ void readDisk(DataEntry* result)
 {
     int f = open(drive, O_RDONLY);
     if(f < 0) {
-        printf("Couldn't open disk1 for read\n");
+        Log("Couldn't open disk1 for read");
         return;
     }
     
     if(lseek(f, DATA_OFFSET, SEEK_SET) < 0) {
-        printf("Seek error\n");
+        Log("Seek error");
         return;
     }
     
     schar data[DATA_ENTRY_SIZE*NUM_REDUNDANT_DATA];
     if(read(f, data, DATA_ENTRY_SIZE*NUM_REDUNDANT_DATA) < 0){
-        printf("Read error: %s\n", strerror(errno));
+        Log("Read error: %s", strerror(errno));
         return;
     }
     
@@ -132,14 +146,14 @@ void readDisk(DataEntry* result)
 
 void printDiskInfo(DataEntry data) 
 {
-    printf("-----Disk-----\nType: ");
+    Log("-----Disk----- Type: ");
     if(data.type == TIME) {
-        printf("Time\n");
-        printf("%dh %dm\n", data.detail.hour, data.detail.minute);
+        Log("Time");
+        Log("%dh %dm", data.detail.hour, data.detail.minute);
     }
     else {
-        printf("Variety\n");
-        printf("%dx %s\n", data.detail.quantity, data.detail.variety == ESPRESSO ? "Espresso" : "Americano");
+        Log("Variety");
+        Log("%dx %s", data.detail.quantity, data.detail.variety == ESPRESSO ? "Espresso" : "Americano");
     }
 }
 
@@ -159,9 +173,8 @@ void saveDisk(DataEntry disk)
     fwrite(data, sizeof(schar), sizeof(data), f);
     fclose(f);
     
-    printf("\nSaved disk in file:\n");
+    Log("Saved disk in file:");
     printDiskInfo(disk);
-    printf("\n");
 }
 
 void loadSavedDisk()
@@ -180,22 +193,21 @@ void loadSavedDisk()
     savedDiskVariety.detail.quantity = data[2];
     savedDiskVariety.detail.variety = data[3];
     
-    printf("\nLoaded saved disk:\n");
+    Log("Loaded saved disk:");
     printDiskInfo(savedDiskTime);
     printDiskInfo(savedDiskVariety);
-    printf("\n");
 }
 
 bool isDiskIn()
 {
-    printf("isDiskIn? ");
+    Log("isDiskIn? ");
     int f = open(drive, O_RDONLY);
     if(f < 0) {
-        printf("No. Error: %s\n", strerror(errno));
+        Log("No. Error: %s", strerror(errno));
         return false;
     }
     else {
-        printf("Yes.\n");
+        Log("Yes.");
         close(f);
         return true;
     }
@@ -249,6 +261,8 @@ void beepStartup()
 
 void setupCronJob() 
 {
+    Log("func");
+
     // Use saved disk data to create cron job
     //# m h  dom mon dow command
     //18 17 * * * touch ~/blah
@@ -256,7 +270,7 @@ void setupCronJob()
     getcwd(cwd, sizeof(cwd));
 
     char data[2048];
-    sprintf(data, "%d %d * * * cd %s && sudo bin/main --make-coffee >> logs\n", savedDiskTime.detail.hour, savedDiskTime.detail.minute, cwd);
+    sprintf(data, "%d %d * * * cd %s && stdbuf -oL bin/main --make-coffee | tee -a cronLog\n", savedDiskTime.detail.hour, savedDiskTime.detail.minute, cwd);
     FILE* f = fopen("cronjob", "w");
     fputs(data, f);
     fclose(f);
@@ -267,11 +281,11 @@ void setupCronJob()
 void makeDrink(DataEntry drink)
 {
     if(drink.type != VARIETY) {
-        printf("Error, bad params in function call makeDrink\n");
+        Log("Error, bad params in function call makeDrink");
         return; 
     }
     
-    printf("Making:\n");
+    Log("Making:");
     printDiskInfo(drink);
     
     //Warmup
@@ -303,13 +317,14 @@ void device_changed (DBusGProxy *proxy,
     bool diskInTest = isDiskIn();
     if(diskInTest && !diskIn) {
         diskIn = true;
-        printf("Added\n");
+        Log("Added");
         
         DataEntry result;
         readDisk(&result);
         
         //check for now disk
         if(result.type == TIME && (result.detail.hour < 0 || result.detail.minute < 0)) {
+            loadSavedDisk();
             beep();
             makeDrink(savedDiskVariety);
         }
@@ -322,7 +337,7 @@ void device_changed (DBusGProxy *proxy,
     
     if(!diskInTest && diskIn){
         diskIn = false;
-        printf("removed\n");
+        Log("removed");
     }
 }
 
@@ -345,7 +360,7 @@ DBusGConnection *connection;
     }
     else
     {
-        printf("Got a connection to DBUS_BUS_SYSTEM\n");
+        Log("Got a connection to DBUS_BUS_SYSTEM");
     }
 
 
@@ -360,7 +375,7 @@ DBusGConnection *connection;
         exit(1);
      }
      else {
-        printf("Probably got a connection to the correct interface...\n");
+        Log("Probably got a connection to the correct interface...");
      }
     
      dbus_g_proxy_add_signal(proxy,"DeviceChanged",DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
@@ -382,11 +397,11 @@ void monitorDisks()
         readDisk(&result);
         //Kind of confusing. wait for 'now' disk to do immediate stuff
         //if(result.type == VARIETY) {
-        //    printf("Started with a variety disk in.\n");
+        //    Log("Started with a variety disk in.\n");
         //    makeDrink(result);
         // }
         //else {
-        //    printf("Started with a time disk, doing nothing\n");
+        //    Log("Started with a time disk, doing nothing\n");
         //}
         
         //dont save 'now' disks
@@ -406,7 +421,7 @@ void monitorDisks()
 void createDisk(int argc, const char * argv[])
 {
     if(argc != 5) {
-        printf("invalid number of arguments\n");
+        Log("invalid number of arguments");
         goto arg_error;
     }
     
@@ -420,7 +435,7 @@ void createDisk(int argc, const char * argv[])
         entry.detail.minute = atoi(argv[4]);
         
         if(entry.detail.hour < -1 || entry.detail.hour > 23) {
-            printf("hours invalid range\n");
+            Log("hours invalid range");
             goto arg_error;
         }
         if(entry.detail.minute < -1 || entry.detail.minute > 59) goto arg_error;
@@ -428,7 +443,7 @@ void createDisk(int argc, const char * argv[])
     else {
         entry.detail.quantity = atoi(argv[3]);
         if(entry.detail.quantity < 1 || entry.detail.quantity > 2) {
-            printf("Cant make less than 1 or more than 2 drinks...\n"); 
+            Log("Cant make less than 1 or more than 2 drinks..."); 
             goto arg_error;
         }
         
@@ -437,13 +452,13 @@ void createDisk(int argc, const char * argv[])
         else goto arg_error;
     }
         
-    printf("Creating:\n");
+    Log("Creating:");
     printDiskInfo(entry);
     writeDisk(entry);
     return;
     
     arg_error:
-    printf("Argument error. Use --create-disk time <24 hour (-1 for now)s> <minute>\n \
+    Log("Argument error. Use --create-disk time <24 hour (-1 for now)s> <minute>\n \
 OR --create-disk variety <quantity> espresso or americano\n\n");  
 }
 
@@ -453,13 +468,13 @@ int readConfigFile()
     /* Read the file. If there is an error, report it and exit. */
     if(! config_read_file(&config, "config"))
     {
-        printf("%s:%d - %s\n", config_error_file(&config),
+        Log("%s:%d - %s", config_error_file(&config),
                 config_error_line(&config), config_error_text(&config));
         goto fail;
     }
     
     if(config_lookup_string(&config, "drive", &drive) == CONFIG_FALSE) goto fail;
-    printf("%s\n", drive);
+    Log("%s", drive);
     if(config_lookup_int(&config, "warmupSecs", &warmupSecs) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "espressoSecs", &espressoSecs) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "americanoSecs", &americanoSecs) == CONFIG_FALSE) goto fail;
@@ -467,11 +482,11 @@ int readConfigFile()
     if(config_lookup_int(&config, "powerPin", &pinPower) == CONFIG_FALSE) goto fail;
     if(config_lookup_int(&config, "beepPin", &beepPin) == CONFIG_FALSE) goto fail;
     
-    printf("Config read successfully\n");
+    Log("Config read successfully");
     return 0;
     
     fail:
-    printf("Parse config file error\n");
+    Log("Parse config file error");
     config_destroy(&config);
     return 1;
 }
@@ -483,12 +498,13 @@ int main(int argc, const char * argv[])
         goto fail_main;
     }
 
+    arg1 = argv[1];
+
     if(readConfigFile()) {
         goto fail_main;
     }
  
     loadSavedDisk();
-    setupCronJob();
     
     //setup beep pin
     wiringPiSetup();
@@ -497,7 +513,7 @@ int main(int argc, const char * argv[])
     //beep();
       
     if(!strcmp(argv[1], "--monitor-disks")) {
-        printf("Starting disk monitor\n");
+        Log("Starting disk monitor");
         monitorDisks();
     }
     else if(!strcmp(argv[1], "--make-coffee")) {
@@ -507,7 +523,7 @@ int main(int argc, const char * argv[])
         createDisk(argc, argv);
     }
     else {
-        printf("Command not recognised.\n");
+        Log("Command not recognised.");
         goto fail_main;
     }
     

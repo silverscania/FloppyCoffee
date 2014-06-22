@@ -2,10 +2,14 @@
 
 case "$1" in
 	start)
-		cd /home/pi/workspace/FloppyCoffee
 		/usr/lib/udisks/udisks-daemon &
-		sudo bin/main --monitor-disks &
+		cd /home/pi/workspace/FloppyCoffee
+		stdbuf -oL bin/main --monitor-disks | tee -a monitorLog &
 	;;
+	stop)
+		cd /home/pi/workspace/FloppyCoffee
+	    echo "Stopping script blah" >> stopRequested
+    ;;
 esac
 
 exit 0
