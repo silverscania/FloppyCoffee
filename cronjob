@@ -1,1 +1,1 @@
-* * * * * cd /home/pi/workspace/FloppyCoffee && stdbuf -oL bin/main --make-coffee | tee -a cronLog
+10 7 * * * cd /home/pi/workspace/FloppyCoffee && stdbuf -oL bin/main --make-coffee | tee -a cronLog

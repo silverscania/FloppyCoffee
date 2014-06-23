@@ -261,7 +261,7 @@ void beepStartup()
 
 void setupCronJob() 
 {
-    Log("func");
+    Log(" ");
 
     // Use saved disk data to create cron job
     //# m h  dom mon dow command
@@ -270,7 +270,7 @@ void setupCronJob()
     getcwd(cwd, sizeof(cwd));
 
     char data[2048];
-    sprintf(data, "%d %d * * * cd %s && stdbuf -oL bin/main --make-coffee | tee -a cronLog\n", savedDiskTime.detail.hour, savedDiskTime.detail.minute, cwd);
+    sprintf(data, "%d %d * * * cd %s && stdbuf -oL bin/main --make-coffee | tee -a cronLog\n", savedDiskTime.detail.minute, savedDiskTime.detail.hour, cwd);
     FILE* f = fopen("cronjob", "w");
     fputs(data, f);
     fclose(f);
@@ -491,10 +491,21 @@ int readConfigFile()
     return 1;
 }
 
+void stopHeater() 
+{
+    Log(" ");
+
+    //All off
+    digitalWrite(pinWater, OFF);
+    digitalWrite(pinPower, OFF);
+    pinMode(pinWater, INPUT);
+    pinMode(pinPower, INPUT);
+}
+
 int main(int argc, const char * argv[])
 {    
     if(argc <= 1) {
-        printf("Not enough arguments. Use --monitor-disks or --make-coffee or --create-disk\n");
+        printf("Not enough arguments. Use --monitor-disks or --make-coffee or --create-disk or --stop-heater\n");
         goto fail_main;
     }
 
@@ -521,6 +532,9 @@ int main(int argc, const char * argv[])
     }
     else if(!strcmp(argv[1], "--create-disk")) {
         createDisk(argc, argv);
+    }
+    else if(!strcmp(argv[1], "--stop-heater")) {
+        stopHeater();
     }
     else {
         Log("Command not recognised.");
