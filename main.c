@@ -330,6 +330,7 @@ void device_changed (DBusGProxy *proxy,
         }
         else {
             saveDisk(result);
+            loadSavedDisk();
             setupCronJob();
             beep();
         }

@@ -176,3 +176,68 @@
 [a:--make-coffee d:6/23 t:22:10:1 f:printDiskInfo]   -----Disk----- Type: 
 [a:--make-coffee d:6/23 t:22:10:1 f:printDiskInfo]   Variety
 [a:--make-coffee d:6/23 t:22:10:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/24 t:7:10:1 f:readConfigFile]   /dev/sda
+[a:--make-coffee d:6/24 t:7:10:1 f:readConfigFile]   Config read successfully
+[a:--make-coffee d:6/24 t:7:10:1 f:loadSavedDisk]   Loaded saved disk:
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   Time
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   7h 10m
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/24 t:7:10:1 f:makeDrink]   Making:
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/24 t:7:10:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/25 t:7:10:1 f:readConfigFile]   /dev/sda
+[a:--make-coffee d:6/25 t:7:10:1 f:readConfigFile]   Config read successfully
+[a:--make-coffee d:6/25 t:7:10:1 f:loadSavedDisk]   Loaded saved disk:
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   Time
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   7h 10m
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/25 t:7:10:1 f:makeDrink]   Making:
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/25 t:7:10:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/26 t:7:10:1 f:readConfigFile]   /dev/sda
+[a:--make-coffee d:6/26 t:7:10:1 f:readConfigFile]   Config read successfully
+[a:--make-coffee d:6/26 t:7:10:1 f:loadSavedDisk]   Loaded saved disk:
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   Time
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   7h 10m
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/26 t:7:10:1 f:makeDrink]   Making:
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/26 t:7:10:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/27 t:7:0:1 f:readConfigFile]   /dev/sda
+[a:--make-coffee d:6/27 t:7:0:1 f:readConfigFile]   Config read successfully
+[a:--make-coffee d:6/27 t:7:0:1 f:loadSavedDisk]   Loaded saved disk:
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   Time
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   7h 10m
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/27 t:7:0:1 f:makeDrink]   Making:
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/27 t:7:0:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/30 t:7:10:1 f:readConfigFile]   /dev/sda
+[a:--make-coffee d:6/30 t:7:10:1 f:readConfigFile]   Config read successfully
+[a:--make-coffee d:6/30 t:7:10:1 f:loadSavedDisk]   Loaded saved disk:
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   Time
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   7h 10m
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   2x Americano
+[a:--make-coffee d:6/30 t:7:10:1 f:makeDrink]   Making:
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   -----Disk----- Type: 
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   Variety
+[a:--make-coffee d:6/30 t:7:10:1 f:printDiskInfo]   2x Americano

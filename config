@@ -1,5 +1,5 @@
 drive = "/dev/sda"
-warmupSecs = 200
+warmupSecs = 300
 espressoSecs = 9
 americanoSecs = 27
 powerPin = 5

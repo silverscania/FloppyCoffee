@@ -211,3 +211,534 @@ Type:
 [a:--monitor-disks d:6/23 t:22:11:27 f:setupCronJob]   func
 [a:--monitor-disks d:6/23 t:22:11:31 f:isDiskIn]   isDiskIn? 
 [a:--monitor-disks d:6/23 t:22:11:31 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/23 t:22:17:28 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/23 t:22:17:28 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/23 t:22:17:28 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/23 t:22:17:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/23 t:22:17:28 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/23 t:22:17:28 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/23 t:22:17:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/23 t:22:17:28 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/23 t:22:17:28 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/23 t:22:17:28 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/23 t:22:17:29 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/23 t:22:17:29 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/23 t:22:17:30 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/23 t:22:17:30 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/23 t:22:50:54 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/23 t:22:50:54 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/23 t:22:50:54 f:device_changed]   Added
+[a:--monitor-disks d:6/23 t:22:50:55 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/23 t:22:50:55 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/23 t:22:50:55 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/23 t:22:50:55 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/23 t:22:50:55 f:setupCronJob]    
+[a:--monitor-disks d:6/23 t:22:50:58 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/23 t:22:50:58 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/23 t:22:51:2 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/23 t:22:51:2 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/23 t:22:51:2 f:device_changed]   removed
+[a:--monitor-disks d:6/23 t:22:51:2 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/23 t:22:51:2 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/24 t:7:17:30 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/24 t:7:17:30 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/24 t:7:17:30 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/24 t:7:17:30 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/24 t:7:17:30 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/24 t:7:17:30 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/24 t:7:17:30 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/24 t:7:17:30 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/24 t:7:17:30 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/24 t:7:17:30 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/24 t:7:17:30 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/24 t:7:17:31 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/24 t:7:17:31 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/24 t:7:17:31 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/25 t:7:17:29 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/25 t:7:17:29 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/25 t:7:17:29 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/25 t:7:17:29 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/25 t:7:17:29 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/25 t:7:17:29 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/25 t:7:17:29 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/25 t:7:17:29 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/25 t:7:17:29 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/25 t:7:17:29 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/25 t:7:17:30 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/25 t:7:17:30 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/25 t:7:17:30 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/25 t:7:17:30 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/25 t:7:17:28 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/25 t:7:17:28 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/25 t:7:17:28 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/25 t:7:17:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/25 t:7:17:28 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/25 t:7:17:28 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/25 t:7:17:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/25 t:7:17:28 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/25 t:7:17:28 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/25 t:7:17:28 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/25 t:7:17:29 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/25 t:7:17:29 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/25 t:7:17:29 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/25 t:7:17:29 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/25 t:7:17:26 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/25 t:7:17:26 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/25 t:7:17:26 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/25 t:7:17:26 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/25 t:7:17:26 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/25 t:7:17:26 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/25 t:7:17:26 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/25 t:7:17:26 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/25 t:7:17:26 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/25 t:7:17:26 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/25 t:7:17:27 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/25 t:7:17:27 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/25 t:7:17:27 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/25 t:7:17:27 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/27 t:6:17:29 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/27 t:6:17:29 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/27 t:6:17:29 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/27 t:6:17:29 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/27 t:6:17:29 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/27 t:6:17:29 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/27 t:6:17:29 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/27 t:6:17:29 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/27 t:6:17:29 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/27 t:6:17:29 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/27 t:6:17:30 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/27 t:6:17:30 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/27 t:6:17:30 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/27 t:6:17:31 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/28 t:9:19:47 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:9:19:47 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/28 t:9:19:47 f:device_changed]   Added
+[a:--monitor-disks d:6/28 t:9:19:47 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/28 t:9:19:47 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:9:19:47 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/28 t:9:19:47 f:printDiskInfo]   1x Americano
+[a:--monitor-disks d:6/28 t:9:19:47 f:setupCronJob]    
+[a:--monitor-disks d:6/28 t:9:19:52 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:9:19:53 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/28 t:9:19:53 f:device_changed]   removed
+[a:--monitor-disks d:6/28 t:9:20:13 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:9:20:13 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/28 t:9:20:13 f:device_changed]   Added
+[a:--monitor-disks d:6/28 t:9:20:14 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   1x Americano
+[a:--monitor-disks d:6/28 t:9:20:14 f:makeDrink]   Making:
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/28 t:9:20:14 f:printDiskInfo]   1x Americano
+[a:--monitor-disks d:6/28 t:9:24:1 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:9:24:1 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/28 t:13:57:25 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:13:57:25 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/28 t:13:57:25 f:device_changed]   removed
+[a:--monitor-disks d:6/28 t:13:57:26 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:13:57:26 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/28 t:13:57:40 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:13:57:40 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/28 t:13:57:40 f:device_changed]   Added
+[a:--monitor-disks d:6/28 t:13:57:41 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/28 t:13:57:41 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:13:57:41 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/28 t:13:57:41 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/28 t:13:57:41 f:setupCronJob]    
+[a:--monitor-disks d:6/28 t:13:57:44 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:13:57:45 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/28 t:13:57:46 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:13:57:46 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/28 t:13:57:46 f:device_changed]   removed
+[a:--monitor-disks d:6/28 t:13:57:46 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:13:57:46 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/28 t:13:58:2 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:13:58:2 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/28 t:13:58:2 f:device_changed]   Added
+[a:--monitor-disks d:6/28 t:13:58:3 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/28 t:13:58:3 f:makeDrink]   Making:
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/28 t:13:58:3 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/28 t:14:2:17 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:14:2:17 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/28 t:21:17:28 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/28 t:21:17:28 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/28 t:21:17:28 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/28 t:21:17:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:21:17:28 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/28 t:21:17:28 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/28 t:21:17:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/28 t:21:17:28 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/28 t:21:17:28 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/28 t:21:17:28 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/28 t:21:17:29 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:21:17:29 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/28 t:21:17:29 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/28 t:21:17:29 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/28 t:21:17:30 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:21:17:30 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/28 t:21:17:30 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/28 t:21:17:30 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:9:41:2 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:9:41:2 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:9:41:2 f:device_changed]   Added
+[a:--monitor-disks d:6/29 t:9:41:6 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/29 t:9:41:6 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:9:41:6 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:9:41:6 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/29 t:9:41:6 f:setupCronJob]    
+[a:--monitor-disks d:6/29 t:9:41:8 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:9:41:8 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:9:41:18 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:9:41:18 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:9:41:18 f:device_changed]   removed
+[a:--monitor-disks d:6/29 t:9:41:40 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:9:41:40 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:9:41:40 f:device_changed]   Added
+[a:--monitor-disks d:6/29 t:9:41:41 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/29 t:9:41:41 f:makeDrink]   Making:
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:9:41:41 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/29 t:9:45:55 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:9:45:55 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:10:45:55 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:45:56 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:45:56 f:device_changed]   removed
+[a:--monitor-disks d:6/29 t:10:46:6 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:46:6 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:10:46:6 f:device_changed]   Added
+[a:--monitor-disks d:6/29 t:10:46:7 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/29 t:10:46:7 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:10:46:7 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:10:46:7 f:printDiskInfo]   1x Americano
+[a:--monitor-disks d:6/29 t:10:46:7 f:setupCronJob]    
+[a:--monitor-disks d:6/29 t:10:46:20 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:46:20 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:46:20 f:device_changed]   removed
+[a:--monitor-disks d:6/29 t:10:46:20 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:46:20 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:46:35 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:46:35 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:10:46:35 f:device_changed]   Added
+[a:--monitor-disks d:6/29 t:10:46:36 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   1x Americano
+[a:--monitor-disks d:6/29 t:10:46:36 f:makeDrink]   Making:
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:10:46:36 f:printDiskInfo]   1x Americano
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:50:23 f:device_changed]   removed
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:50:23 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:50:24 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:50:24 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:50:24 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:10:50:24 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:10:50:24 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:17:15:41 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:17:15:41 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:17:15:41 f:device_changed]   Added
+[a:--monitor-disks d:6/29 t:17:15:42 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/29 t:17:15:42 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:17:15:42 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:17:15:42 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/29 t:17:15:42 f:setupCronJob]    
+[a:--monitor-disks d:6/29 t:17:15:46 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:17:15:46 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:17:15:48 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:17:15:49 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:17:15:49 f:device_changed]   removed
+[a:--monitor-disks d:6/29 t:17:15:49 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:17:15:49 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:17:16:4 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:17:16:4 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:17:16:4 f:device_changed]   Added
+[a:--monitor-disks d:6/29 t:17:16:5 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/29 t:17:16:5 f:makeDrink]   Making:
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:17:16:5 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/29 t:17:20:19 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:17:20:20 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:21:17:32 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/29 t:21:17:32 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/29 t:21:17:32 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/29 t:21:17:32 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:21:17:32 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/29 t:21:17:32 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/29 t:21:17:32 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:21:17:32 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:21:17:32 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/29 t:21:17:32 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/29 t:21:17:33 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:21:17:34 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:21:17:34 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/29 t:21:17:34 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/29 t:23:38:48 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:23:38:48 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/29 t:23:38:48 f:device_changed]   Added
+[a:--monitor-disks d:6/29 t:23:38:49 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/29 t:23:38:49 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/29 t:23:38:49 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/29 t:23:38:49 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/29 t:23:38:49 f:setupCronJob]    
+[a:--monitor-disks d:6/29 t:23:38:54 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:23:38:55 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:23:38:55 f:device_changed]   removed
+[a:--monitor-disks d:6/29 t:23:38:55 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:23:38:55 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/29 t:23:38:55 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/29 t:23:38:56 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:8:17:26 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/30 t:8:17:26 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/30 t:8:17:26 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/30 t:8:17:26 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:8:17:26 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/30 t:8:17:26 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/30 t:8:17:26 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:8:17:26 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:8:17:26 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/30 t:8:17:26 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/30 t:8:17:27 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:8:17:27 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:8:17:27 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/30 t:8:17:27 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/30 t:8:17:27 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/30 t:8:17:27 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/30 t:8:17:27 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/30 t:8:17:27 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/30 t:8:17:29 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:8:17:29 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:8:17:29 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/30 t:8:17:29 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/30 t:8:17:31 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/30 t:8:17:31 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/30 t:8:17:31 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/30 t:8:17:31 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:8:17:31 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/30 t:8:17:31 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/30 t:8:17:31 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:8:17:31 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:8:17:31 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:6/30 t:8:17:31 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/30 t:8:17:32 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:8:17:33 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:8:17:33 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/30 t:8:17:33 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/30 t:21:3:8 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:3:8 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/30 t:21:3:8 f:device_changed]   Added
+[a:--monitor-disks d:6/30 t:21:3:9 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/30 t:21:3:9 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:3:9 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:21:3:9 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:6/30 t:21:3:9 f:setupCronJob]    
+[a:--monitor-disks d:6/30 t:21:3:15 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:3:15 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:3:15 f:device_changed]   removed
+[a:--monitor-disks d:6/30 t:21:3:15 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:3:15 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:3:16 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:3:16 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:3:44 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:3:44 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/30 t:21:3:44 f:device_changed]   Added
+[a:--monitor-disks d:6/30 t:21:3:44 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/30 t:21:3:44 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:3:44 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/30 t:21:3:44 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/30 t:21:3:44 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:3:44 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:21:3:44 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:6/30 t:21:3:45 f:makeDrink]   Making:
+[a:--monitor-disks d:6/30 t:21:3:45 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:3:45 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:21:3:45 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:6/30 t:21:7:14 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:7:14 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/30 t:8:17:27 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/30 t:8:17:27 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/30 t:8:17:27 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:8:17:27 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:6/30 t:8:17:27 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/30 t:8:17:28 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:8:17:29 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/30 t:8:17:31 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/30 t:8:17:31 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:6/30 t:21:14:19 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:14:19 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:14:19 f:device_changed]   removed
+[a:--monitor-disks d:6/30 t:21:14:20 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:14:20 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:14:58 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:14:58 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/30 t:21:14:58 f:device_changed]   Added
+[a:--monitor-disks d:6/30 t:21:14:59 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:6/30 t:21:14:59 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:14:59 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:21:14:59 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:6/30 t:21:14:59 f:setupCronJob]    
+[a:--monitor-disks d:6/30 t:21:15:3 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:15:3 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:15:3 f:device_changed]   removed
+[a:--monitor-disks d:6/30 t:21:15:4 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:15:4 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:15:4 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:15:4 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:15:27 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:15:27 f:isDiskIn]   Yes.
+[a:--monitor-disks d:6/30 t:21:15:27 f:device_changed]   Added
+[a:--monitor-disks d:6/30 t:21:15:27 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/30 t:21:15:27 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:15:27 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/30 t:21:15:27 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:6/30 t:21:15:27 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:15:27 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:21:15:27 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:6/30 t:21:15:28 f:makeDrink]   Making:
+[a:--monitor-disks d:6/30 t:21:15:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:15:28 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:21:15:28 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:6/30 t:21:17:28 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:6/30 t:21:17:28 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:6/30 t:21:17:28 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:6/30 t:21:17:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:17:28 f:printDiskInfo]   Time
+[a:--monitor-disks d:6/30 t:21:17:28 f:printDiskInfo]   0h 0m
+[a:--monitor-disks d:6/30 t:21:17:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:6/30 t:21:17:28 f:printDiskInfo]   Variety
+[a:--monitor-disks d:6/30 t:21:17:28 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:6/30 t:21:17:28 f:main]   Starting disk monitor
+[a:--monitor-disks d:6/30 t:21:17:29 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:6/30 t:21:17:29 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:6/30 t:21:17:29 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:6/30 t:21:17:29 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:7/1 t:8:17:31 f:readConfigFile]   /dev/sda
+[a:--monitor-disks d:7/1 t:8:17:31 f:readConfigFile]   Config read successfully
+[a:--monitor-disks d:7/1 t:8:17:31 f:loadSavedDisk]   Loaded saved disk:
+[a:--monitor-disks d:7/1 t:8:17:31 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:7/1 t:8:17:31 f:printDiskInfo]   Time
+[a:--monitor-disks d:7/1 t:8:17:31 f:printDiskInfo]   0h 0m
+[a:--monitor-disks d:7/1 t:8:17:31 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:7/1 t:8:17:31 f:printDiskInfo]   Variety
+[a:--monitor-disks d:7/1 t:8:17:31 f:printDiskInfo]   1x Espresso
+[a:--monitor-disks d:7/1 t:8:17:31 f:main]   Starting disk monitor
+[a:--monitor-disks d:7/1 t:8:17:32 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:8:17:32 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:7/1 t:8:17:32 f:startUDisks]   Got a connection to DBUS_BUS_SYSTEM
+[a:--monitor-disks d:7/1 t:8:17:32 f:startUDisks]   Probably got a connection to the correct interface...
+[a:--monitor-disks d:7/1 t:22:53:28 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:53:28 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:22:53:28 f:device_changed]   Added
+[a:--monitor-disks d:7/1 t:22:53:28 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:7/1 t:22:53:28 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:7/1 t:22:53:28 f:printDiskInfo]   Variety
+[a:--monitor-disks d:7/1 t:22:53:28 f:printDiskInfo]   2x Americano
+[a:--monitor-disks d:7/1 t:22:53:28 f:setupCronJob]    
+[a:--monitor-disks d:7/1 t:22:53:32 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:53:32 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:22:54:0 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:54:0 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:7/1 t:22:54:0 f:device_changed]   removed
+[a:--monitor-disks d:7/1 t:22:54:0 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:54:1 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:7/1 t:22:54:16 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:54:16 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:22:54:16 f:device_changed]   Added
+[a:--monitor-disks d:7/1 t:22:54:17 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:7/1 t:22:54:17 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:7/1 t:22:54:17 f:printDiskInfo]   Time
+[a:--monitor-disks d:7/1 t:22:54:17 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:7/1 t:22:54:17 f:setupCronJob]    
+[a:--monitor-disks d:7/1 t:22:54:21 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:54:21 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:7/1 t:22:54:21 f:device_changed]   removed
+[a:--monitor-disks d:7/1 t:22:54:21 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:54:22 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:7/1 t:22:54:22 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:54:22 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:7/1 t:22:59:44 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:59:44 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:22:59:44 f:device_changed]   Added
+[a:--monitor-disks d:7/1 t:22:59:45 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:7/1 t:22:59:45 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:7/1 t:22:59:45 f:printDiskInfo]   Time
+[a:--monitor-disks d:7/1 t:22:59:45 f:printDiskInfo]   7h 10m
+[a:--monitor-disks d:7/1 t:22:59:45 f:setupCronJob]    
+[a:--monitor-disks d:7/1 t:22:59:48 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:22:59:48 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:23:0:27 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:23:0:27 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:23:0:42 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:23:0:43 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:7/1 t:23:0:43 f:device_changed]   removed
+[a:--monitor-disks d:7/1 t:23:0:58 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:23:0:58 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:23:0:58 f:device_changed]   Added
+[a:--monitor-disks d:7/1 t:23:0:59 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:7/1 t:23:0:59 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:7/1 t:23:0:59 f:printDiskInfo]   Time
+[a:--monitor-disks d:7/1 t:23:0:59 f:printDiskInfo]   7h 0m
+[a:--monitor-disks d:7/1 t:23:0:59 f:setupCronJob]    
+[a:--monitor-disks d:7/1 t:23:1:3 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:23:1:3 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:23:7:5 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:23:7:6 f:isDiskIn]   No. Error: No medium found
+[a:--monitor-disks d:7/1 t:23:7:6 f:device_changed]   removed
+[a:--monitor-disks d:7/1 t:23:7:20 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:23:7:20 f:isDiskIn]   Yes.
+[a:--monitor-disks d:7/1 t:23:7:20 f:device_changed]   Added
+[a:--monitor-disks d:7/1 t:23:7:20 f:saveDisk]   Saved disk in file:
+[a:--monitor-disks d:7/1 t:23:7:20 f:printDiskInfo]   -----Disk----- Type: 
+[a:--monitor-disks d:7/1 t:23:7:20 f:printDiskInfo]   Time
+[a:--monitor-disks d:7/1 t:23:7:20 f:printDiskInfo]   7h 0m
+[a:--monitor-disks d:7/1 t:23:7:20 f:setupCronJob]    
+[a:--monitor-disks d:7/1 t:23:7:24 f:isDiskIn]   isDiskIn? 
+[a:--monitor-disks d:7/1 t:23:7:24 f:isDiskIn]   Yes.
